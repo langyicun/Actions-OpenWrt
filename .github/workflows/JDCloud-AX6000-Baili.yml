@@ -176,7 +176,7 @@ jobs:
         fi
         
     - name: 使用GSW交换机驱动（非DSA）
-      if: github.event.inputs.GSW == 'true'
+      if: github.event.inputs.GSW == 'false'
       run: |
         cp JDCloud-AX6000-Baili/mt7986a-gsw-jdcloud-re-cp-03.dts openwrt/target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7986a-jdcloud-re-cp-03.dts
         cd openwrt
@@ -194,7 +194,7 @@ jobs:
         sed -i 's/CONFIG_PACKAGE_lua-cjson=y/CONFIG_WIFI_NORMAL_SETTING=y/g' .config
         
     - name: 取消编译dockerman
-      if: github.event.inputs.NO_DOCKERMAN == 'true'
+      if: github.event.inputs.NO_DOCKERMAN == 'false'
       run: |
         cd openwrt
         sed -i '/CONFIG_PACKAGE_luci-app-dockerman=y/d' .config
